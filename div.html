@@ -1,32 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cafe Website</title>
     <style>
-        body{
-            background-color: rgb(243, 169, 80);
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>
-            CAFE DELISH
-        </h1>
-    </header>
-<section id="featured treats">
-    <h2 class="">Featured Treats</h2>
-<div style="background-color: brown; padding: 20px; border: 1px; margin: 10px;">
-    <img src="images/salted-caramel-cups-7-500x500.jpg" alt="Caramel Chocolate Cups">
-<p class="">Caramel Chocolate Cups</p>
-</div>
-<div style="background-color: brown; padding: 20px; border: 1px; margin: 10px;">
-    <img src="images/Matcha-milk-tea-feature.jpg" alt="Matcha Latte">
-<p class="">Matcha Latte</p>
-</div>
-</section>
+      body {
+        background-color: rgb(243, 169, 80);
+      }
+      p {
+        color: white;
+        font-size: larger;
+        margin-right: 20px;
+        margin-left: 50px;
+      }
+      p {
+        margin-right: 20px;
+        margin-left: 50px;
+        color: white;
+        font-size: larger;
+      }
+      h2 {
+        color: #ffffff;
+      }
+      .container {
+        display: flex;
+        align-items: flex-start; /* aligns text with top of image */
+        background-color: #9a2e2e; /* your background color */
+        padding: 20px;
+      }
 
-</body>
+      .image {
+        width: 300px;
+        height: auto;
+        margin-right: 20px; /* space between image and text */
+        border-radius: 8px;
+      }
+      .image {
+        width: 250px; /* or any size you used for the first image */
+        height: auto; /* keeps aspect ratio */
+        border-radius: 8px;
+        display: block;
+      }
+
+      .text {
+        flex: 1; /* text takes remaining space */
+        color: #ffffff;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>CAFE DELISH</h1>
+    </header>
+    <section id="featured treats">
+      <h2 class="">Featured Treats</h2>
+      <div
+        style="
+          background-color: brown;
+          padding: 20px;
+          border: 1px;
+          margin: 10px;
+        "
+      >
+        <div class="container">
+          <img
+            src="images/salted-caramel-cups-7-500x500.jpg"
+            alt="Caramel Chocolate Cups"
+            class="image"
+          />
+
+          <div class="text">
+            <h2>Caramel Chocolate Cups</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+              blanditiis quaerat omnis eos itaque fugit eaque accusantium quia
+              velit dolorem eius vitae.
+            </p>
+          </div>
+        </div>
+        <div
+          style="
+            background-color: brown;
+            padding: 20px;
+            border: 1px solid #000;
+            margin: 10px;
+          "
+        >
+          <div class="container">
+            <img
+              src="images/Matcha-milk-tea-feature.jpg"
+              alt="Matcha Latte"
+              class="image"
+            />
+            <b><h2>Matcha Latte</h2></b>
+          </div>
+          <p1>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+            blanditiis quaerat omnis eos itaque fugit eaque accusantium quia
+            velit dolorem eius vitae.
+          </p1>
+        </div>
+      </div>
+    </section>
+    <a href="C:\Users\Saite\Downloads\edunet\web-development_sphn-2025\web.html"
+      >Visit website</a
+    >
+  </body>
 </html>
