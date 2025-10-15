@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cafe Delish - Featured Treats</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f3a950 0%, #d4843a 100%);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        padding: 30px 20px;
+        background: linear-gradient(145deg, #7b1e1e, #9a2e2e);
+        color: #fff;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        animation: slideDown 0.8s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+        letter-spacing: 3px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        font-size: 1.2em;
+        opacity: 0.9;
+      }
+
+      .section-title {
+        color: #fff;
+        font-size: 2.5em;
+        margin: 40px 0 30px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 1s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .menu-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .menu-item {
+        background: linear-gradient(145deg, #9a2e2e, #7b1e1e);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease;
+        opacity: 0;
+        animation: slideIn 0.6s ease-out forwards;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .menu-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .menu-item:hover::before {
+        left: 100%;
+      }
+
+      .menu-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .menu-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .menu-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .menu-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .menu-item:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .menu-item:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .menu-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .item-image {
+        width: 280px;
+        height: 280px;
+        border-radius: 15px;
+        object-fit: cover;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.4s ease;
+        flex-shrink: 0;
+      }
+
+      .menu-item:hover .item-image {
+        transform: scale(1.05) rotate(2deg);
+      }
+
+      .item-content {
+        flex: 1;
+        color: #fff;
+      }
+
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .item-name {
+        font-size: 2em;
+        font-weight: bold;
+        color: #fff;
+        margin: 0;
+      }
+
+      .item-price {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: #f3a950;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .item-description {
+        font-size: 1.1em;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .item-tags {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        background: rgba(243, 169, 80, 0.3);
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        border: 1px solid rgba(243, 169, 80, 0.5);
+        transition: all 0.3s ease;
+      }
+
+      .tag:hover {
+        background: rgba(243, 169, 80, 0.5);
+        transform: scale(1.05);
+      }
+
+      .order-btn {
+        background: linear-gradient(135deg, #f3a950, #d4843a);
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(243, 169, 80, 0.4);
+        margin-top: 15px;
+      }
+
+      .order-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(243, 169, 80, 0.6);
+      }
+
+      .back-home {
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .back-home a {
+        display: inline-block;
+        padding: 15px 40px;
+        background: linear-gradient(145deg, #7b1e1e, #9a2e2e);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 1.1em;
+        font-weight: bold;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .back-home a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .menu-item {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .item-image {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .item-header {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+
+        .section-title {
+          font-size: 1.8em;
+        }
+      }
+      .login-btn {
+        background-color: #ff9800; /* orange highlight */
+        color: white;
+        padding: 12px 28px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .login-btn:hover {
+        background-color: #e68900; /* darker shade on hover */
+        transform: scale(1.05); /* slight zoom */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>CAFE DELISH</h1>
+      <p class="subtitle">Artisanal Coffee & Gourmet Treats</p>
+    </header>
+
+    <div class="menu-container">
+      <h2 class="section-title">Featured Treats</h2>
+
+      <!-- Item 1 -->
+      <div class="menu-item">
+        <img
+          src="images\salted-caramel-cups-7-500x500.jpg"
+          alt="Caramel Chocolate Cups"
+          class="item-image"
+        />
+        <div class="item-content">
+          <div class="item-header">
+            <h3 class="item-name">Caramel Chocolate Cups</h3>
+            <span class="item-price">$4.99</span>
+          </div>
+          <p class="item-description">
+            Indulge in our signature Caramel Chocolate Cups - rich, bite-sized
+            treats made with smooth layers of creamy caramel encased in decadent
+            dark chocolate. Each cup delivers the perfect balance of sweetness
+            and salt, offering a melt-in-your-mouth indulgence that's perfect
+            for dessert lovers.
+          </p>
+          <div class="item-tags">
+            <span class="tag">🍫 Chocolate</span>
+            <span class="tag">🍯 Caramel</span>
+            <span class="tag">⭐ Popular</span>
+          </div>
+          <button class="order-btn">Order Now</button>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="menu-item">
+        <img
+          src="images\Matcha-milk-tea-feature.jpg"
+          alt="Matcha Latte"
+          class="item-image"
+        />
+        <div class="item-content">
+          <div class="item-header">
+            <h3 class="item-name">Matcha Latte</h3>
+            <span class="item-price">$5.49</span>
+          </div>
+          <p class="item-description">
+            Experience the perfect harmony of East meets West with our creamy
+            Matcha Latte. Made with finely ground Japanese green tea powder
+            blended with milk and a hint of sweetness. It offers a perfect
+            balance of earthy matcha flavor and silky texture, delivering both
+            energy and calmness in every sip. Loved for its vibrant green color
+            and rich antioxidants.
+          </p>
+          <div class="item-tags">
+            <span class="tag">🍵 Matcha</span>
+            <span class="tag">💚 Healthy</span>
+            <span class="tag">🌱 Organic</span>
+          </div>
+          <button class="order-btn">Order Now</button>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="menu-item">
+        <img
+          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=400&fit=crop"
+          alt="Espresso"
+          class="item-image"
+        />
+        <div class="item-content">
+          <div class="item-header">
+            <h3 class="item-name">Classic Espresso</h3>
+            <span class="item-price">$3.49</span>
+          </div>
+          <p class="item-description">
+            Bold and intense, our Classic Espresso is brewed from premium
+            Arabica beans sourced from the finest coffee regions. Expertly
+            extracted to deliver a rich crema and full-bodied flavor with notes
+            of dark chocolate and caramel. Perfect for true coffee enthusiasts
+            who appreciate the pure, unadulterated taste of exceptional coffee.
+          </p>
+          <div class="item-tags">
+            <span class="tag">☕ Strong</span>
+            <span class="tag">🔥 Hot</span>
+            <span class="tag">⚡ Energizing</span>
+          </div>
+          <button class="order-btn">Order Now</button>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="menu-item">
+        <img
+          src="images\WhatsApp Image 2025-10-15 at 11.17.27_55daacad.jpg"
+          alt="Croissant"
+          class="item-image"
+        />
+        <div class="item-content">
+          <div class="item-header">
+            <h3 class="item-name">Butter Croissant</h3>
+            <span class="item-price">$3.99</span>
+          </div>
+          <p class="item-description">
+            Freshly baked every morning, our authentic French butter croissants
+            feature 72 delicate layers of golden, flaky pastry. Made with
+            premium European butter and traditional techniques, each bite
+            reveals a crispy exterior that gives way to a soft, buttery
+            interior. The perfect companion to your morning coffee or afternoon
+            tea.
+          </p>
+          <div class="item-tags">
+            <span class="tag">🥐 Fresh</span>
+            <span class="tag">🧈 Buttery</span>
+            <span class="tag">🇫🇷 French</span>
+          </div>
+          <button class="order-btn">Order Now</button>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="menu-item">
+        <img
+          src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=400&fit=crop"
+          alt="Iced Caramel Macchiato"
+          class="item-image"
+        />
+        <div class="item-content">
+          <div class="item-header">
+            <h3 class="item-name">Iced Caramel Macchiato</h3>
+            <span class="item-price">$5.99</span>
+          </div>
+          <p class="item-description">
+            A refreshing twist on a classic favorite. Our Iced Caramel Macchiato
+            combines rich espresso with velvety steamed milk, vanilla syrup, and
+            a generous drizzle of buttery caramel sauce over ice. The perfect
+            balance of sweet and bold, with beautiful layers that are almost too
+            pretty to drink. A customer favorite for warm afternoons!
+          </p>
+          <div class="item-tags">
+            <span class="tag">🧊 Iced</span>
+            <span class="tag">🍮 Caramel</span>
+            <span class="tag">😋 Sweet</span>
+          </div>
+          <button class="order-btn">Order Now</button>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="menu-item">
+        <img
+          src="images\WhatsApp Image 2025-10-15 at 10.57.34_3d6c547e.jpg"
+          alt="Tiramisu"
+          class="item-image"
+        />
+        <div class="item-content">
+          <div class="item-header">
+            <h3 class="item-name">Classic Tiramisu</h3>
+            <span class="item-price">$6.49</span>
+          </div>
+          <p class="item-description">
+            Transport yourself to Italy with our authentic Tiramisu. Layers of
+            espresso-soaked ladyfingers alternate with rich mascarpone cream,
+            dusted with premium cocoa powder. Made fresh daily using our
+            grandmother's traditional recipe. This elegant Italian dessert
+            offers the perfect balance of coffee, cream, and sweetness - a
+            luxurious finish to any meal.
+          </p>
+          <div class="item-tags">
+            <span class="tag">🇮🇹 Italian</span>
+            <span class="tag">☕ Coffee-infused</span>
+            <span class="tag">💎 Premium</span>
+          </div>
+          <button class="order-btn">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Add click animation to order buttons
+      document.querySelectorAll(".order-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const itemName =
+            this.closest(".menu-item").querySelector(".item-name").textContent;
+          alert(
+            `Thank you for ordering ${itemName}! Your order will be ready soon. 🎉`
+          );
+
+          // Add animation
+          this.style.transform = "scale(0.95)";
+          setTimeout(() => {
+            this.style.transform = "scale(1)";
+          }, 100);
+        });
+      });
+
+      // Add parallax effect on scroll
+      window.addEventListener("scroll", () => {
+        const items = document.querySelectorAll(".menu-item");
+        items.forEach((item, index) => {
+          const rect = item.getBoundingClientRect();
+          const scrollPercent =
+            (window.innerHeight - rect.top) / window.innerHeight;
+
+          if (scrollPercent > 0 && scrollPercent < 1) {
+            const img = item.querySelector(".item-image");
+            img.style.transform = `translateY(${scrollPercent * 20 - 10}px)`;
+          }
+        });
+      });
+    </script>
+    <div style="text-align: center; margin-top: 40px">
+      <a href="login.html" class="login-btn"> Login </a>
+    </div>
+  </body>
+</html>
